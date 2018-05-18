@@ -5,9 +5,11 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.apache.log4j.Logger;
 import org.apache.tools.ant.filters.TokenFilter;
+import org.apache.tools.ant.taskdefs.Sleep;
 import org.apache.tools.ant.taskdefs.condition.Contains;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
@@ -44,10 +46,20 @@ public class Main_screen extends Common {
         driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]").clear();//status
 
         logger.info(device + ": - Tracks and Achievements");
-        
-        scrollUp("//XCUIElementTypeStaticText[@name=\"Недавние прогулки\"]");
-        //swipeUp();
-        driver.findElementByXPath("//XCUIElementTypeStaticText[@name=\"Недавние прогулки\"]").click(); //Недавние прогулки
+
+        logger.info("scrollUp");
+
+        switch (device) {
+            case "iPhone Remi": {
+                swipeUp();
+                break;
+            }
+            case "iPhone 6":{
+                scrollUp(tabBar);
+                break;
+            }
+        }
+        driver.findElementByAccessibilityId("Недавние прогулки").click(); //Недавние прогулки
         driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]").click();//первый трек
         driver.findElementByAccessibilityId("Все прогулки").click();
         driver.navigate().back();
