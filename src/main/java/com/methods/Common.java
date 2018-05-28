@@ -14,6 +14,8 @@ import static com.vars.vars.screensize;
 public class Common {
 
     public AppiumDriver driver;
+    public String tabBar = "//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar";
+    public String navBar = "//XCUIElementTypeApplication[@name=\\\"Averia Collar\\\"]/XCUIElementTypeWindow[3]/XCUIElementTypeStatusBar/XCUIElementTypeOther[2]";
 
     Logger logger = Logger.getLogger(Common.class);
 
@@ -67,7 +69,7 @@ public class Common {
 
         logger.info(device + ": GOTO Main Screen");
         driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar/XCUIElementTypeButton[1]").click();
-
+        scrollDown(navBar);
     }
 
     public void gotoMapScreen(String device) {
@@ -75,6 +77,7 @@ public class Common {
         logger.info(device + ": GOTO Map Screen");
         driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar/XCUIElementTypeButton[2]").click();
 
+        iOSAllowAccess();
     }
 
     public void gotoProfileScreen(String device) {
@@ -87,20 +90,19 @@ public class Common {
 
     public void ScreensShuffle() {
 
-        String tabBar = "//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar";
-        String navBar = "//XCUIElementTypeApplication[@name=\\\"Averia Collar\\\"]/XCUIElementTypeWindow[3]/XCUIElementTypeStatusBar/XCUIElementTypeOther[2]";
-
-        driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar/XCUIElementTypeButton[2]").click();
-        iOSAllowAccess();
-        sleep(1);
-        driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar/XCUIElementTypeButton[3]").click();
+        for (int i = 0; i < 2; i++) {
+            driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar/XCUIElementTypeButton[2]").click();
+            iOSAllowAccess();
             sleep(1);
-        scrollUp(tabBar);
-            scrollDown(navBar);
-        driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar/XCUIElementTypeButton[1]").click();
+            driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar/XCUIElementTypeButton[3]").click();
             sleep(1);
             scrollUp(tabBar);
             scrollDown(navBar);
+            driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeTabBar/XCUIElementTypeButton[1]").click();
+            sleep(1);
+            scrollUp(tabBar);
+            scrollDown(navBar);
+        }
     }
 
     public void phonePhoto () {
@@ -149,7 +151,7 @@ public class Common {
 
     public boolean isElementPresent(By by){
         try {
-            driver.findElements(by);
+            driver.findElement(by);
             return true;
         } catch (NoSuchElementException e){
             return false;
