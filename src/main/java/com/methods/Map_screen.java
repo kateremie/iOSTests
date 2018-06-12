@@ -5,6 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -51,27 +52,33 @@ public class Map_screen extends Common {
 
         driver.findElementByAccessibilityId("safeZone save btn").click();
 
-        logger.info(device + ": Saving test safe zone");
+        logger.info(device + ": Saving new safe zone");
 
         driver.findElementByAccessibilityId("safeZone save btn").click();
 
-        sleep(5);
+
+        elementVisibilityWait(By.id(vars.newSafeZone));
 
         driver.findElementByAccessibilityId(vars.newSafeZone).click();
-        sleep(2);
+
+        elementVisibilityWait(By.id("safeZone more btn"));
 
         driver.findElementByAccessibilityId("safeZone more btn").click();
-        sleep(2);
+
+        elementVisibilityWait(By.id("Удалить"));
 
         driver.findElementByAccessibilityId("Удалить").click();
-        sleep(2);
+
+        elementVisibilityWait(By.id("Да"));
 
         driver.findElementByAccessibilityId("Да").click();
         logger.info(device + ": Deleting test safe zone");
-        sleep(7);
+
+        elementVisibilityWait(By.id("Настройки питомца"));
 
         driver.findElementByAccessibilityId("Настройки питомца").click();
-        sleep(2);
+
+        elementVisibilityWait(By.id("Averia Tester"));
 
         //плохой вариант т.к. имя юзера может меняться. Надо забирть, как имя пета
         driver.findElementByAccessibilityId("Averia Tester").click();
