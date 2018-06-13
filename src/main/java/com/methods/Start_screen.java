@@ -49,7 +49,6 @@ public class Start_screen extends Common{
 
         driver.findElementByAccessibilityId("Регистрация").click();
 
-
         elementPresenceWait(By.id("Продолжить"));
 
         driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"Averia Collar\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeTextField").sendKeys(userlogin);

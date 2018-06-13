@@ -57,7 +57,8 @@ public class Profile_screen extends Common {
         driver.findElementByAccessibilityId("userProfileEditing save").click();
 
         elementVisibilityWait(By.id("Редактировать профиль"));
-                logger.info("Saving user profile changes");
+
+        logger.info("Saving user profile changes");
         }
 
     }

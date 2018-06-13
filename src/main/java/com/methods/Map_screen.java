@@ -52,33 +52,27 @@ public class Map_screen extends Common {
 
         driver.findElementByAccessibilityId("safeZone save btn").click();
 
-        logger.info(device + ": Saving new safe zone");
+        logger.info(device + ": Saving test safe zone");
 
         driver.findElementByAccessibilityId("safeZone save btn").click();
 
-
-        elementVisibilityWait(By.id(vars.newSafeZone));
+        sleep(5);
 
         driver.findElementByAccessibilityId(vars.newSafeZone).click();
-
-        elementVisibilityWait(By.id("safeZone more btn"));
+        sleep(2);
 
         driver.findElementByAccessibilityId("safeZone more btn").click();
-
-        elementVisibilityWait(By.id("Удалить"));
+        sleep(2);
 
         driver.findElementByAccessibilityId("Удалить").click();
-
-        elementVisibilityWait(By.id("Да"));
+        sleep(2);
 
         driver.findElementByAccessibilityId("Да").click();
         logger.info(device + ": Deleting test safe zone");
-
-        elementVisibilityWait(By.id("Настройки питомца"));
+        sleep(7);
 
         driver.findElementByAccessibilityId("Настройки питомца").click();
-
-        elementVisibilityWait(By.id("Averia Tester"));
+        sleep(2);
 
         //плохой вариант т.к. имя юзера может меняться. Надо забирть, как имя пета
         driver.findElementByAccessibilityId("Averia Tester").click();

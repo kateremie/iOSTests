@@ -81,7 +81,8 @@ public class Pet_screen extends Common{
 
         driver.findElementByXPath("//*[@type='XCUIElementTypeTextField']").sendKeys("овчарка");
 
-        elementVisibilityWait(By.id("Азиатская овчарка"));
+        sleep(5);
+
         driver.findElementByAccessibilityId("Азиатская овчарка").click();
 
         driver.findElementByAccessibilityId("next screen button enabled").click();
@@ -102,8 +103,7 @@ public class Pet_screen extends Common{
         petheight.sendKeys(vars.petheight);
 
         driver.findElementByAccessibilityId("finalize process enabled").click();
-
-        elementVisibilityWait(By.id("Не сейчас"));
+        sleep(10);
         Assert.assertEquals("Не сейчас", driver.findElementByAccessibilityId("Не сейчас").getText());
         driver.findElementByAccessibilityId("Не сейчас").click();
 
@@ -129,7 +129,9 @@ public class Pet_screen extends Common{
             driver.findElementByAccessibilityId("Удалиь питомца").click();
 
             driver.findElementByAccessibilityId("Удалить").click();
+
             elementVisibilityWait(By.id("Добавить питомца"));
+          
         }
 
 
@@ -164,6 +166,7 @@ public class Pet_screen extends Common{
         petheight.sendKeys(vars.petheight);
 
         driver.findElementByAccessibilityId("finalize process enabled").click();
+
         elementVisibilityWait(By.id(temp_petname));
 
         if (isElementPresent(By.id(temp_petname))) { logger.error(device + ": Temp Pet Added!"); }
@@ -180,7 +183,9 @@ public class Pet_screen extends Common{
         scrollUp("Удалить питомца");
         driver.findElementByAccessibilityId("Удалить питомца").click();
         driver.findElementByAccessibilityId("Да").click();
+
         elementVisibilityWait(By.id("Добавить питомца"));
+
         if (isElementPresent(By.id(temp_petname))) { logger.error(device + ": Temp Pet Still Present!"); }
 
     }
